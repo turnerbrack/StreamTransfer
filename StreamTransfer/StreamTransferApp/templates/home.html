@@ -1,0 +1,38 @@
+{% load static %}
+
+<html>
+  <head>
+    <title>Homepage</title>
+
+    <!-- Include the Foundation CSS file -->
+    <link rel="stylesheet" href="../node_modules/foundation-sites/dist/css/foundation.min.css">
+
+    <!-- Include a custom CSS file for your own styles (optional) -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+  </head>
+  <body style="background: linear-gradient(to bottom, #000080, #800080); text-align: center;">
+    <h1 style="font-size: 6em; color: rgb(114, 224, 255); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Welcome to the Homepage</h1>
+    <button style="font-size: 2em; color: rgb(194, 163, 255); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #db26ec; border-radius: 20px; padding: 10px 20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" onclick="login_tidal()">Login</button>
+    <script>
+      function login_tidal() {
+  // make an AJAX request to the server to execute the login_tidal function
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/login/tidal/');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      // if the login was successful, update the page to reflect the redirect
+      window.location.href = '/playlists/';
+    } else {
+      // handle any errors that occurred
+      console.error('An error occurred: ' + xhr.status);
+    }
+  }
+  // include the CSRF token in the request data
+  var csrf_token = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+  xhr.send('csrfmiddlewaretoken=' + csrf_token);
+}
+    </script>
+    {% csrf_token %}
+  </body>
+</html>

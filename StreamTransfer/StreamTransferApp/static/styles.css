@@ -1,0 +1,24 @@
+body {
+    background: linear-gradient(to bottom, #000080, #800080);
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 6em;
+    color: rgb(114, 224, 255);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  button {
+    font-size: 2em;
+    color: rgb(194, 163, 255);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #db26ec;
+    border-radius: 20px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .button:hover {
+    background-color: #800080;
+  }

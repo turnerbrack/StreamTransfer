@@ -1,0 +1,44 @@
+{% load static %}
+
+<html>
+  <head>
+    <title>Playlists</title>
+
+    <!-- Include the Foundation CSS file -->
+    <link rel="stylesheet" href="../node_modules/foundation-sites/dist/css/foundation.min.css">
+
+    <!-- Include a custom CSS file for your own styles (optional) -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+  </head>
+  <body>
+    <h1>Playlists</h1>
+    <!-- List of selectable playlists-->
+    <h1>Transferrable Playlists</h1>
+
+    <ul style="text-align: left; display: inline-block; list-style-type: none;">
+    {% for playlist in playlists %}
+        <li style="font-size: 48px; color: #ffffff">
+            <img src="{{ playlist.art_url }}" alt="{{ playlist.name }}"
+            width="96" height="96">
+            {{ playlist.name }}
+        </li>
+    {% empty %}
+        <li>No playlists found.</li> 
+    {% endfor %}
+    </ul>
+    <!-- Button to transfer playlists -->
+    <form method="post">
+      {% csrf_token %}
+      <button onclick="transferPlaylists()">Transfer Playlists</button>
+    </form>
+
+    <!-- Include jQuery and the app's JavaScript file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'app.js' %}"></script>
+
+    <!-- Initialize Foundation -->
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
